@@ -2,7 +2,7 @@ $(document).ready(function() {
 
   // $('#myModal').modal({backdrop: 'static', keyboard: false});
 
-  	var test =[
+  var test =[
   {id: 1, name: "Komodo Dragon", class: "Reptilia"},
   {id: 2, name: "Chameleon", class: "Reptilia"},
   {id: 3, name: "Gecko", class: "Reptilia"},
@@ -13,6 +13,8 @@ $(document).ready(function() {
   {id: 8, name: "Goliath Birdeater", class: "Arachnida"},
   {id: 9, name: "Tarantula", class: "Arachnida"}
   ]
+
+	var arr = [];
 
   $(document).on('keypress', function(e) {
     if (e.key === 'a') {
@@ -53,15 +55,16 @@ $(document).ready(function() {
         textDecoration: 'underline'
       })
       reptiliaDiv.append(reptiliaHeader);
-      var reptiliaImage, randomNum = 12 + 6;
+      var reptiliaImage, randomNum = (12 + 6);
       for (var i = 0; i < reptilia.length; i++) {
         $.ajax({
           method: 'GET',
           url: 'http://api.giphy.com/v1/gifs/search?q=' + reptilia[i].name + '&api_key=dc6zaTOxFJmzC&limit=10'
         }).then((giphy) => {
-          var randomNum = Math.floor(Math.random() - 10)
+        	randomNum = Math.floor(Math.random() * 10)
+					console.log(randomNum)
           reptiliaImage = $('<img>', {
-            src: giphy.data[i].images.fixed_height.url
+            src: giphy.data[randomNum].images.fixed_height.url
           });
           reptiliaDiv.append(reptiliaImage);
         })
@@ -97,9 +100,9 @@ $(document).ready(function() {
           method: 'GET',
           url: 'http://api.giphy.com/v1/gifs/search?q=' + amphibia[i].name + '&api_key=dc6zaTOxFJmzC&limit=10'
         }).then((giphy) => {
-          var randomNum = Math.floor(Math.random() - 10)
+          var randomNum = Math.floor(Math.random() * 10)
           amphibiaImage = $('<img>', {
-            src: giphy.data[i].images.fixed_height.url
+            src: giphy.data[randomNum].images.fixed_height.url
           });
           amphibiaDiv.append(amphibiaImage);
         })
@@ -137,9 +140,9 @@ $(document).ready(function() {
           method: 'GET',
           url: 'http://api.giphy.com/v1/gifs/search?q=' + arachnida[i].name + '&api_key=dc6zaTOxFJmzC&limit=10'
         }).then((giphy) => {
-          var randomNum = Math.floor(Math.random() - 10)
+          var randomNum = Math.floor(Math.random() * 10)
           arachnidaImage = $('<img>', {
-            src: giphy.data[i].images.fixed_height.url
+            src: giphy.data[randomNum].images.fixed_height.url
           });
           console.log(giphy)
           arachnidaDiv.append(arachnidaImage);
