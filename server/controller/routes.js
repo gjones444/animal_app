@@ -56,13 +56,13 @@ router.get('/api/reptilia', function(req,res) {
 })
 
 router.get('api/amphibia', (req,res) => {
-	pgClient.query("SELECT * FROM amphibia WHERE class='Amphibia'", (err, queryRes) => {
+	pgClient.query("SELECT * FROM animals WHERE class='Amphibia'", (err, queryRes) => {
 			if(err){
 				res.json({error: err})
 			} else {
 				res.json({amphibia: queryRes.rows})
 			}
-		// console.log(res.rows)
+		console.log(queryRes.rows)
 		// res.json(res.rows);
 	})
 })
@@ -72,7 +72,7 @@ router.get('/api/reptilia', (req,res) => {
 			if(err){
 				res.json({error: err})
 			} else {
-				res.json({reptilia: queryRes.rows})
+				res.json({arachnida: queryRes.rows})
 			}
 		// console.log(res.rows)
 		// res.json(res.rows);
