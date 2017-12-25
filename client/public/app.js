@@ -29,18 +29,19 @@ $(document).ready(function(){
 	});
 
 	$('#header').on('click', function(){
-		// $('#reptilia-div').remove();
+		$('#reptilia-div').remove();
 		var rowDiv = $('<div class="row">');
 
-		var colOneDiv = $('<div lass="col-md-1">');
-		var colTwoDiv = $('<dir clas="col-md-2">');
+		var colOneDiv = $('<div class="col-md-1">');
+		var colTwoDiv = $('<div class="col-md-2">');
+		var colThreeoDiv = $('<div class="col-md-3">');
 
 		$.ajax({
 			type: 'GET',
 			url: '/api/animals'
 		}).then((animals) => {
 			var reptilia = joe.filter((animal) => {
-				return animal.class.toLowerCase() === 'amphibia'
+				return animal.class.toLowerCase() === 'reptilia'
 			})
 			console.log(reptilia)
 			var reptiliaDiv = $('<div id="reptilia-div">');
@@ -57,12 +58,13 @@ $(document).ready(function(){
 				}).then((giphy) => {
 					var randomNum = Math.floor(Math.random() - 10)
 					reptiliaImage = $('<img>', {
-						src: giphy.data[0].images.fixed_height.url
+						src: giphy.data[i].images.fixed_height.url
 					});
 					reptiliaDiv.append(reptiliaImage);
 				})
 
 			}
+			colOneDiv.append(reptiliaDiv);
 			colTwoDiv.append(reptiliaDiv);
 			rowDiv.append(colOneDiv).append(colTwoDiv);
 			$('#append-to-this-div').append(rowDiv);
